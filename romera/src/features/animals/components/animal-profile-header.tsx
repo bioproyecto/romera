@@ -43,21 +43,24 @@ export function AnimalProfileHeader({ animal }: { animal: Animal }) {
           <div className="min-w-0 self-center sm:self-start">
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <h1 className="text-xl font-medium tracking-[-0.04em] text-[#193b2a] sm:text-2xl">{handle}</h1>
-              <button type="button" onClick={() => setIsCredentialsOpen(true)} aria-label="Ver credenciales de la ficha" className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[#285d3a] p-0 leading-none text-white transition-colors hover:bg-[#1e4b2f] sm:h-auto sm:w-auto sm:gap-1.5 sm:px-2 sm:py-1">
+              <button type="button" onClick={() => setIsCredentialsOpen(true)} aria-label="Ver credenciales de la ficha" className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[#285d3a] p-0 leading-none text-white transition-colors hover:bg-[#1e4b2f]">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="block size-4"><path d="m7.5 12 2.8 2.8L16.8 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.5" /></svg>
-                <span className="hidden text-[9px] font-medium uppercase tracking-[0.1em] sm:inline">Ficha revisada</span>
               </button>
             </div>
-            <span title={animal.statusDetail} className={`mt-2 inline-flex h-7 max-w-full items-center gap-1.5 rounded-full border px-2.5 text-[9px] font-medium uppercase tracking-[0.1em] ${conservationStyle}`}>
+            <span title={animal.statusDetail} className={`mt-2 inline-flex h-7 max-w-full items-center gap-1.5 rounded-full border px-2.5 text-[9px] font-medium uppercase tracking-[0.1em] sm:hidden ${conservationStyle}`}>
               <span className="size-1.5 shrink-0 rounded-full bg-current" />
               <span className="truncate">{animal.conservationStatus}</span>
             </span>
           </div>
-          <div className="col-span-2 mt-4 flex gap-2 sm:col-span-1 sm:col-start-2">
-            <button type="button" aria-label={`Subir una observación de ${animal.commonName}`} className="min-w-0 flex-1 rounded-md bg-[#285d3a] px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1e4b2f] sm:flex-none sm:py-1.5 sm:text-xs">+ Subir observación</button>
+          <div className="col-span-2 mt-4 flex items-center gap-2 sm:col-span-1 sm:col-start-2">
+            <button type="button" aria-label={`Subir una observación de ${animal.commonName}`} className="min-w-0 flex-1 rounded-md bg-[#285d3a] px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1e4b2f] sm:h-8 sm:flex-none sm:py-0 sm:text-xs">+ Subir observación</button>
             <button type="button" aria-label={isSaved ? `Quitar ${animal.commonName} de especies guardadas` : `Guardar ${animal.commonName}`} aria-pressed={isSaved} onClick={() => setIsSaved(!isSaved)} className={`grid size-10 shrink-0 place-items-center rounded-md border transition-colors sm:size-8 ${isSaved ? "border-[#285d3a] bg-[#285d3a] text-white" : "border-[#bdd1c0] bg-transparent text-[#285d3a] hover:bg-[#e6efe6]"}`}>
               <svg viewBox="0 0 24 24" fill={isSaved ? "currentColor" : "none"} aria-hidden="true" className="size-[17px]"><path d="M6.5 4.5h11v15l-5.5-3.7-5.5 3.7v-15Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /></svg>
             </button>
+            <span title={animal.statusDetail} className={`hidden h-8 items-center gap-1.5 rounded-full border px-2.5 text-[9px] font-medium uppercase tracking-[0.1em] sm:inline-flex sm:h-7 sm:gap-1 sm:px-2 sm:text-[8px] ${conservationStyle}`}>
+              <span className="size-1.5 shrink-0 rounded-full bg-current sm:size-1" />
+              <span>{animal.conservationStatus}</span>
+            </span>
           </div>
           <div className="col-span-2 mt-6 grid grid-cols-3 sm:col-span-1 sm:col-start-2 sm:mt-6 sm:max-w-md">
             <div className="text-center sm:text-left"><p className="text-base font-semibold tracking-[-0.04em]">{animal.observationsCount}</p><p className="mt-0.5 text-[10px] text-[#69816f] sm:inline sm:pl-1">observaciones</p></div>
