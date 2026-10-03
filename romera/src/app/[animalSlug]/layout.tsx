@@ -15,8 +15,9 @@ export default async function AnimalLayout({ children, params }: LayoutProps<"/[
 
   return (
     <main className="min-h-screen bg-[#f7f8f5] text-[#193b2a] selection:bg-[#c7dac9]">
-      <nav className="mx-auto flex max-w-5xl items-center px-5 py-4 sm:px-8 sm:py-5">
+      <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
         <Link href={`/${animal.slug}`} className="text-lg font-semibold tracking-[-0.06em]">romera</Link>
+        <Link href="/explorar" className="text-[10px] font-medium uppercase tracking-[0.13em] text-[#58715f] transition-colors hover:text-[#193b2a]">Explorar especies</Link>
       </nav>
       <AnimalProfileHeader animal={animal} />
       {children}

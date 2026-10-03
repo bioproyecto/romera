@@ -158,6 +158,10 @@ export function getAnimal(slug: string) {
   return animals[slug];
 }
 
+export function getAnimals() {
+  return Object.values(animals);
+}
+
 export function getAnimalSlugs() {
   return Object.keys(animals);
 }
