@@ -60,9 +60,9 @@ const animals: Record<string, Animal> = {
     statusDetail: "UICN · LC",
     conservationLevel: "not-threatened",
     profileReview: {
-      reviewer: "Salomé Valencia",
-      reviewerImage: "https://scontent.cdninstagram.com/v/t51.75761-19/505427357_18513268147013308_8598638172268425164_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=TniOxQ8yURoQ7kNvwHljg1b&_nc_oc=AdrDA2vgjDcu-_iy4NJwcpOGa-A1U0CpvGmzOTuXV0fW9Lbx7nlD9g-wbigCrD2Qc9M&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_gid=MZPVKSM6KvK8Lt-7pW5ugw&_nc_ss=7b689&oh=00_AQMuYNAENwjzIYlfGceuAE_4PKNr9WQdlZcIp0PML5_rSA&oe=6AC76958",
-      role: "Bióloga",
+      reviewer: getObserver("salome")!.name,
+      reviewerImage: getObserver("salome")!.avatar,
+      role: getObserver("salome")!.role!,
       organization: "Romera",
       reviewedAt: "03 oct 2026",
       sources: ["UICN", "eBird", "GBIF"],
@@ -165,3 +165,4 @@ export function getAnimals() {
 export function getAnimalSlugs() {
   return Object.keys(animals);
 }
+import { getObserver } from "../observers/observers";

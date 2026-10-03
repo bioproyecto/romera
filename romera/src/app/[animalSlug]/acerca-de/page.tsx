@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAnimal } from "@/features/animals/animals";
 
@@ -10,7 +11,7 @@ export default async function AboutPage({ params }: PageProps<"/[animalSlug]/ace
     <section className="mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-14">
       <div className="max-w-2xl"><p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#718b78]">Ficha de especie</p><h2 className="mt-2 font-serif text-3xl tracking-[-0.045em] sm:text-4xl">El {animal.commonName.toLowerCase()}</h2><p className="mt-4 text-sm leading-6 text-[#58715f]">{animal.description}</p></div>
 
-      <aside className="mt-8 flex items-center gap-3 rounded-xl border border-[#d8e3d9] bg-[#f1f5ef] p-3 text-[#355d40] sm:max-w-md"><div role="img" aria-label={`Retrato de ${animal.profileReview.reviewer}`} className="size-10 shrink-0 rounded-full bg-[#285d3a] bg-cover bg-center" style={{ backgroundImage: `url('${animal.profileReview.reviewerImage}')` }} /><p className="text-xs leading-5"><span className="font-semibold">Ficha revisada por {animal.profileReview.reviewer}</span><span className="block text-[#67806d]">{animal.profileReview.role} · {animal.profileReview.reviewedAt}</span></p><span className="ml-auto grid size-5 shrink-0 place-items-center rounded-full bg-[#285d3a] text-[10px] text-white">✓</span></aside>
+      <Link href="/u/salome" className="mt-8 flex items-center gap-3 rounded-xl border border-[#d8e3d9] bg-[#f1f5ef] p-3 text-[#355d40] transition-colors hover:bg-white sm:max-w-md"><span role="img" aria-label={`Retrato de ${animal.profileReview.reviewer}`} className="size-10 shrink-0 rounded-full bg-[#285d3a] bg-cover bg-center" style={{ backgroundImage: `url('${animal.profileReview.reviewerImage}')` }} /><span className="text-xs leading-5"><span className="block font-semibold">Ficha revisada por {animal.profileReview.reviewer}</span><span className="block text-[#67806d]">{animal.profileReview.role} · {animal.profileReview.reviewedAt}</span></span><span className="ml-auto grid size-5 shrink-0 place-items-center rounded-full bg-[#285d3a] text-[10px] text-white">✓</span></Link>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
         <section className="relative min-h-[360px] overflow-hidden rounded-2xl bg-[#315a3e] bg-cover bg-center" style={{ backgroundImage: `url('${animal.coverImage}')` }}>
