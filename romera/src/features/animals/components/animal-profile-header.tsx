@@ -40,7 +40,7 @@ export function AnimalProfileHeader({ animal }: { animal: Animal }) {
               <div className="size-full rounded-full border border-white/70" />
             </div>
           </div>
-          <div className="min-w-0 self-start">
+          <div className="min-w-0 self-center sm:self-start">
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <h1 className="text-xl font-medium tracking-[-0.04em] text-[#193b2a] sm:text-2xl">{handle}</h1>
               <button type="button" onClick={() => setIsCredentialsOpen(true)} aria-label="Ver credenciales de la ficha" className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[#285d3a] p-0 leading-none text-white transition-colors hover:bg-[#1e4b2f] sm:h-auto sm:w-auto sm:gap-1.5 sm:px-2 sm:py-1">
