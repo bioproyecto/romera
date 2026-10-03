@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAnimal } from "@/features/animals/animals";
-
-const mapPoints = ["left-[22%] top-[30%]", "left-[36%] top-[47%]", "left-[49%] top-[37%]", "left-[61%] top-[56%]", "left-[72%] top-[40%]", "left-[81%] top-[62%]"];
+import { ObservationMapPreview } from "@/features/animals/components/observation-map-preview";
 
 export default async function AnimalPage({ params }: PageProps<"/[animalSlug]">) {
   const { animalSlug } = await params;
@@ -24,11 +23,7 @@ export default async function AnimalPage({ params }: PageProps<"/[animalSlug]">)
 
       <section>
         <div className="mb-4 flex items-end justify-between gap-4"><div><p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#718b78]">Territorio</p><h2 className="mt-1 font-serif text-2xl tracking-[-0.045em] sm:text-3xl">Dónde se ha visto</h2></div><Link href={`/${animal.slug}/mapa`} className="shrink-0 text-[10px] font-medium uppercase tracking-[0.13em] text-[#285d3a] transition-colors hover:text-[#193b2a]">Ver mapa</Link></div>
-        <Link href={`/${animal.slug}/mapa`} className="relative block aspect-[16/8] overflow-hidden rounded-lg border border-[#d5e2d6] bg-[#dfeade] transition-opacity hover:opacity-90 sm:aspect-[16/6]">
-          <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(#b9d0bc_1px,transparent_1px),linear-gradient(90deg,#b9d0bc_1px,transparent_1px)] [background-size:38px_38px]" />
-          {mapPoints.map((position) => <span key={position} className={`absolute ${position} grid size-5 place-items-center rounded-full border border-white/70 bg-[#326a45]/85 shadow-sm`}><span className="size-1.5 rounded-full bg-white" /></span>)}
-          <span className="absolute bottom-3 left-3 rounded-full bg-[#f8faf6]/90 px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.12em] text-[#476952]">{animal.areasCount} zonas registradas</span>
-        </Link>
+        <div className="relative aspect-[16/8] overflow-hidden rounded-lg border border-[#d5e2d6] sm:aspect-[16/6]"><ObservationMapPreview observations={animal.observations} className="h-full w-full" zoom={16} /><Link href={`/${animal.slug}/mapa`} className="absolute bottom-3 left-3 z-[500] rounded-full bg-[#f8faf6]/90 px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.12em] text-[#476952] transition-colors hover:bg-white">{animal.areasCount} zonas registradas · ver mapa</Link></div>
       </section>
 
       <section className="border-y border-[#d8e3d9] py-7 sm:py-9">
