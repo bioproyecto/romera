@@ -6,15 +6,24 @@ export type Observation = {
   coordinates: [number, number];
   observer: string;
   note: string;
+  contributorType?: "institutional";
 };
 
 export type ProfileReview = {
   reviewer: string;
+  reviewerImage: string;
   role: string;
   organization: string;
   reviewedAt: string;
   sources: string[];
   verifiedObservations: number;
+  reviewNote: string;
+};
+
+export type PublicContent = {
+  title: string;
+  videoId: string;
+  duration: string;
 };
 
 export type Animal = {
@@ -33,6 +42,11 @@ export type Animal = {
   areasCount: number;
   habitat: string;
   distribution: string;
+  localPresence: string;
+  identification: string;
+  diet: string;
+  elevation: string;
+  publicContent: PublicContent[];
   observations: Observation[];
 };
 
@@ -46,12 +60,14 @@ const animals: Record<string, Animal> = {
     statusDetail: "UICN · LC",
     conservationLevel: "not-threatened",
     profileReview: {
-      reviewer: "Equipo Romera",
-      role: "Registros comunitarios",
-      organization: "Reserva Ecológica La Romera",
+      reviewer: "Salomé Valencia",
+      reviewerImage: "https://scontent.cdninstagram.com/v/t51.75761-19/505427357_18513268147013308_8598638172268425164_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=TniOxQ8yURoQ7kNvwHljg1b&_nc_oc=AdrDA2vgjDcu-_iy4NJwcpOGa-A1U0CpvGmzOTuXV0fW9Lbx7nlD9g-wbigCrD2Qc9M&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_gid=MZPVKSM6KvK8Lt-7pW5ugw&_nc_ss=7b689&oh=00_AQMuYNAENwjzIYlfGceuAE_4PKNr9WQdlZcIp0PML5_rSA&oe=6AC76958",
+      role: "Bióloga",
+      organization: "Romera",
       reviewedAt: "03 oct 2026",
       sources: ["UICN", "eBird", "GBIF"],
       verifiedObservations: 47,
+      reviewNote: "El barranquero andino es un buen indicador de los bordes de bosque conservados en La Romera.",
     },
     description: "Ave de bosque andino, de plumaje verde y cola en forma de raqueta. En La Romera suele recorrer el sotobosque y los bordes húmedos.",
     coverImage: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Andean_motmot_%28Momotus_aequatorialis_aequatorialis%29_Las_Tangaras.jpg",
@@ -60,6 +76,22 @@ const animals: Record<string, Animal> = {
     areasCount: 7,
     habitat: "Bosque montano húmedo, bordes de bosque y vegetación secundaria, con frecuencia cerca de quebradas.",
     distribution: "Andes desde Colombia hasta Bolivia; en Colombia habita las tres cordilleras entre 1.500 y 3.100 m.",
+    localPresence: "En La Romera se observa en el sotobosque, claros y bordes húmedos del bosque, sobre todo durante las primeras horas de la mañana.",
+    identification: "Corona azul brillante, antifaz negro, pecho verde oliva y una cola larga terminada en dos raquetas.",
+    diet: "Insectos, otros artrópodos y frutos.",
+    elevation: "1.500 a 3.100 m s. n. m.",
+    publicContent: [
+      {
+        title: "Reserva Ecológica, La Romera",
+        videoId: "4-HS-GUJoDY",
+        duration: "2:41",
+      },
+      {
+        title: "La Romera, patrimonio natural de los sabaneteños",
+        videoId: "WsNnBNFs26M",
+        duration: "26:09",
+      },
+    ],
     observations: [
       {
         id: "romera-oct-2026",
@@ -69,6 +101,7 @@ const animals: Record<string, Animal> = {
         coordinates: [6.1203, -75.5972],
         observer: "@mariana.r",
         note: "Posado en un borde de bosque después de la lluvia.",
+        contributorType: "institutional",
       },
       {
         id: "romera-sep-2026",
@@ -87,6 +120,7 @@ const animals: Record<string, Animal> = {
         coordinates: [6.1209, -75.5984],
         observer: "@martin.c",
         note: "Individuo forrajeando entre árboles de borde.",
+        contributorType: "institutional",
       },
       {
         id: "romera-ago-2026-2",
@@ -114,6 +148,7 @@ const animals: Record<string, Animal> = {
         coordinates: [6.1201, -75.5988],
         observer: "@maria.campos",
         note: "Registro validado por tres observadores de la reserva.",
+        contributorType: "institutional",
       },
     ],
   },
