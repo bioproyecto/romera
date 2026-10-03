@@ -6,7 +6,8 @@ import { useState } from "react";
 import type { Animal } from "../animals";
 
 const tabs = [
-  { label: "Observaciones", segment: "" },
+  { label: "Feed", segment: "" },
+  { label: "Observaciones", segment: "/observaciones" },
   { label: "Mapa", segment: "/mapa" },
   { label: "Acerca de", segment: "/acerca-de" },
 ];
