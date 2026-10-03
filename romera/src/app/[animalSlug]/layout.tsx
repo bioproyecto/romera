@@ -15,11 +15,8 @@ export default async function AnimalLayout({ children, params }: LayoutProps<"/[
 
   return (
     <main className="min-h-screen bg-[#f7f8f5] text-[#193b2a] selection:bg-[#c7dac9]">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-5 sm:px-8">
+      <nav className="mx-auto flex max-w-5xl items-center px-5 py-4 sm:px-8 sm:py-5">
         <Link href={`/${animal.slug}`} className="text-lg font-semibold tracking-[-0.06em]">romera</Link>
-        <button type="button" aria-label="Guardar este perfil" className="grid size-9 place-items-center rounded-full border border-[#d6e1d7] bg-[#fbfcfa] transition-colors hover:bg-[#e6efe6]">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="size-[17px]"><path d="M6.5 4.5h11v15l-5.5-3.7-5.5 3.7v-15Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /></svg>
-        </button>
       </nav>
       <AnimalProfileHeader animal={animal} />
       {children}

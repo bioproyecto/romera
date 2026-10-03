@@ -14,6 +14,7 @@ export type Animal = {
   classification: string;
   conservationStatus: string;
   statusDetail: string;
+  conservationLevel: "not-threatened" | "near-threatened" | "vulnerable" | "endangered" | "critically-endangered";
   description: string;
   coverImage: string;
   observationsCount: number;
@@ -32,8 +33,9 @@ const animals: Record<string, Animal> = {
     classification: "Mammalia · Felidae",
     conservationStatus: "Casi amenazada",
     statusDetail: "UICN · NT",
+    conservationLevel: "near-threatened",
     description: "El felino más grande de América. Su presencia es una señal de bosques sanos y conectados.",
-    coverImage: "https://images.unsplash.com/photo-1519066629447-267fffa62d4b?auto=format&fit=crop&w=900&q=90",
+    coverImage: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Jaguar_head_shot-edit2.jpg",
     observationsCount: 286,
     observersCount: 74,
     areasCount: 18,
@@ -42,7 +44,7 @@ const animals: Record<string, Animal> = {
     observations: [
       {
         id: "calakmul-oct-2026",
-        image: "https://images.unsplash.com/photo-1519066629447-267fffa62d4b?auto=format&fit=crop&w=1000&q=85",
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/93/009_Female_jaguar_in_Encontro_das_%C3%81guas_State_Park_Photo_by_Giles_Laurent.jpg",
         observedAt: "03 oct 2026",
         location: "Reserva de la Biosfera Calakmul",
         observer: "@mariana.r",
@@ -50,7 +52,7 @@ const animals: Record<string, Animal> = {
       },
       {
         id: "sian-kaan-sep-2026",
-        image: "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1000&q=85",
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/ec/011_Jaguar_drinking_in_Encontro_das_%C3%81guas_State_Park_Photo_by_Giles_Laurent.jpg",
         observedAt: "18 sep 2026",
         location: "Corredor Biológico Sian Ka'an",
         observer: "@vida.silvestre",
@@ -58,7 +60,7 @@ const animals: Record<string, Animal> = {
       },
       {
         id: "calakmul-ago-2026",
-        image: "https://images.unsplash.com/photo-1535338454770-8be927b5a00b?auto=format&fit=crop&w=1000&q=85",
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River_2.JPG",
         observedAt: "29 ago 2026",
         location: "Reserva de la Biosfera Calakmul",
         observer: "@martin.c",
@@ -66,7 +68,7 @@ const animals: Record<string, Animal> = {
       },
       {
         id: "lacandon-aug-2026",
-        image: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1000&q=85",
+        image: "https://upload.wikimedia.org/wikipedia/commons/f/f8/Jaguar_%28Panthera_onca_palustris%29_male_Rio_Negro_2.JPG",
         observedAt: "12 ago 2026",
         location: "Selva Lacandona",
         observer: "@ana.rios",
@@ -74,7 +76,7 @@ const animals: Record<string, Animal> = {
       },
       {
         id: "usumacinta-jul-2026",
-        image: "https://images.unsplash.com/photo-1518467166778-46c7f0e11a50?auto=format&fit=crop&w=1000&q=85",
+        image: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Jaguar_%28Panthera_onca_palustris%29_male_Three_Brothers_River_2.jpg",
         observedAt: "25 jul 2026",
         location: "Cuenca del Usumacinta",
         observer: "@sur.territorio",
@@ -82,7 +84,7 @@ const animals: Record<string, Animal> = {
       },
       {
         id: "campeche-jun-2026",
-        image: "https://images.unsplash.com/photo-1504006833117-8886a355efbf?auto=format&fit=crop&w=1000&q=85",
+        image: "https://upload.wikimedia.org/wikipedia/commons/f/fb/On%C3%A7a_do_Pantanal.jpg",
         observedAt: "06 jun 2026",
         location: "Campeche, México",
         observer: "@maria.campos",
