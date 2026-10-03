@@ -13,7 +13,7 @@ const tabs = [
 
 const conservationStyles = {
   "not-threatened": "border-[#c9dfcd] bg-[#e5f0e6] text-[#356242]",
-  "near-threatened": "border-[#d8d8ad] bg-[#f0efd8] text-[#65612b]",
+  "near-threatened": "border-[#d1d19a] bg-[#f0efd8] text-[#585522]",
   vulnerable: "border-[#dfc28e] bg-[#f5e5c6] text-[#7b5421]",
   endangered: "border-[#ddb29e] bg-[#f2d5ca] text-[#873f2c]",
   "critically-endangered": "border-[#cf948b] bg-[#e8bdb7] text-[#762d2a]",
@@ -22,6 +22,7 @@ const conservationStyles = {
 export function AnimalProfileHeader({ animal }: { animal: Animal }) {
   const pathname = usePathname();
   const [isSaved, setIsSaved] = useState(false);
+  const [isCredentialsOpen, setIsCredentialsOpen] = useState(false);
   const handle = `@${animal.scientificName.toLowerCase().replace(" ", ".")}`;
   const conservationStyle = conservationStyles[animal.conservationLevel];
 
@@ -41,7 +42,11 @@ export function AnimalProfileHeader({ animal }: { animal: Animal }) {
           </div>
           <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
             <h1 className="text-xl font-medium tracking-[-0.04em] text-[#193b2a] sm:text-2xl">{handle}</h1>
-            <span title={animal.statusDetail} className={`rounded-full border px-2 py-1 text-[9px] font-medium uppercase tracking-[0.11em] ${conservationStyle}`}>{animal.conservationStatus}</span>
+            <span title={animal.statusDetail} className={`inline-flex h-7 shrink-0 items-center justify-center rounded-full border px-2.5 text-[9px] font-medium leading-none uppercase tracking-[0.11em] ${conservationStyle}`}><span className="-translate-y-px">{animal.conservationStatus}</span></span>
+            <button type="button" onClick={() => setIsCredentialsOpen(true)} aria-label="Ver credenciales de la ficha" className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[#285d3a] p-0 leading-none text-white transition-colors hover:bg-[#1e4b2f] sm:h-auto sm:w-auto sm:gap-1.5 sm:px-2 sm:py-1">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="block size-4"><path d="m7.5 12 2.8 2.8L16.8 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.5" /></svg>
+              <span className="hidden text-[9px] font-medium uppercase tracking-[0.1em] sm:inline">Ficha revisada</span>
+            </button>
           </div>
           <div className="col-span-2 mt-4 flex gap-2 sm:col-span-1 sm:col-start-2">
             <button type="button" aria-label={`Subir una observación de ${animal.commonName}`} className="min-w-0 flex-1 rounded-md bg-[#285d3a] px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1e4b2f] sm:flex-none sm:py-1.5 sm:text-xs">+ Subir observación</button>
@@ -70,6 +75,19 @@ export function AnimalProfileHeader({ animal }: { animal: Animal }) {
             })}
           </nav>
         </div>
+
+        {isCredentialsOpen && (
+          <div role="dialog" aria-modal="true" aria-labelledby="credentials-title" className="fixed inset-0 z-50 grid place-items-end bg-[#102418]/40 p-3 backdrop-blur-[2px] sm:place-items-center sm:p-6">
+            <div className="w-full max-w-md rounded-2xl bg-[#f8faf6] p-6 shadow-2xl sm:p-7">
+              <div className="flex items-start justify-between gap-6">
+                <div><p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#69816f]">Credenciales científicas</p><h2 id="credentials-title" className="mt-2 font-serif text-2xl tracking-[-0.04em]">Ficha revisada</h2></div>
+                <button type="button" onClick={() => setIsCredentialsOpen(false)} aria-label="Cerrar credenciales" className="grid size-8 place-items-center rounded-full border border-[#d2dfd3] text-[#486b53] transition-colors hover:bg-[#e9f0e8]">×</button>
+              </div>
+              <div className="mt-7 border-y border-[#dce6dd] py-5"><p className="text-sm font-semibold text-[#244a31]">{animal.profileReview.reviewer}</p><p className="mt-1 text-sm leading-5 text-[#5b7562]">{animal.profileReview.role}<br />{animal.profileReview.organization}</p><p className="mt-3 text-[10px] font-medium uppercase tracking-[0.12em] text-[#708a77]">Revisado el {animal.profileReview.reviewedAt}</p></div>
+              <div className="mt-5 grid grid-cols-2 gap-4"><div><p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#708a77]">Fuentes</p><p className="mt-1 text-sm text-[#355d40]">{animal.profileReview.sources.join(" · ")}</p></div><div><p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#708a77]">Registros validados</p><p className="mt-1 text-sm text-[#355d40]">{animal.profileReview.verifiedObservations} observaciones</p></div></div>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

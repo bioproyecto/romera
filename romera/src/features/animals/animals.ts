@@ -7,6 +7,15 @@ export type Observation = {
   note: string;
 };
 
+export type ProfileReview = {
+  reviewer: string;
+  role: string;
+  organization: string;
+  reviewedAt: string;
+  sources: string[];
+  verifiedObservations: number;
+};
+
 export type Animal = {
   slug: string;
   scientificName: string;
@@ -15,6 +24,7 @@ export type Animal = {
   conservationStatus: string;
   statusDetail: string;
   conservationLevel: "not-threatened" | "near-threatened" | "vulnerable" | "endangered" | "critically-endangered";
+  profileReview: ProfileReview;
   description: string;
   coverImage: string;
   observationsCount: number;
@@ -34,6 +44,14 @@ const animals: Record<string, Animal> = {
     conservationStatus: "Casi amenazada",
     statusDetail: "UICN · NT",
     conservationLevel: "near-threatened",
+    profileReview: {
+      reviewer: "Dra. Laura Méndez",
+      role: "Bióloga de conservación",
+      organization: "Universidad Nacional Autónoma de México",
+      reviewedAt: "03 oct 2026",
+      sources: ["UICN", "CONABIO", "GBIF"],
+      verifiedObservations: 94,
+    },
     description: "El felino más grande de América. Su presencia es una señal de bosques sanos y conectados.",
     coverImage: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Jaguar_head_shot-edit2.jpg",
     observationsCount: 286,
