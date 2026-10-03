@@ -12,11 +12,11 @@ const tabs = [
 ];
 
 const conservationStyles = {
-  "not-threatened": "border-[#c9dfcd] bg-[#e5f0e6] text-[#356242]",
-  "near-threatened": "border-[#d1d19a] bg-[#f0efd8] text-[#585522]",
-  vulnerable: "border-[#dfc28e] bg-[#f5e5c6] text-[#7b5421]",
-  endangered: "border-[#ddb29e] bg-[#f2d5ca] text-[#873f2c]",
-  "critically-endangered": "border-[#cf948b] bg-[#e8bdb7] text-[#762d2a]",
+  "not-threatened": "border-[#b8d5bc] bg-[#dcecdf] text-[#285b35]",
+  "near-threatened": "border-[#c8bd5d] bg-[#e7e3ad] text-[#504d16]",
+  vulnerable: "border-[#d9af62] bg-[#f0d49d] text-[#71480f]",
+  endangered: "border-[#d28f74] bg-[#edc0af] text-[#783522]",
+  "critically-endangered": "border-[#bf706a] bg-[#dc9c96] text-[#682522]",
 };
 
 export function AnimalProfileHeader({ animal }: { animal: Animal }) {
@@ -40,13 +40,18 @@ export function AnimalProfileHeader({ animal }: { animal: Animal }) {
               <div className="size-full rounded-full border border-white/70" />
             </div>
           </div>
-          <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
-            <h1 className="text-xl font-medium tracking-[-0.04em] text-[#193b2a] sm:text-2xl">{handle}</h1>
-            <span title={animal.statusDetail} className={`inline-flex h-7 shrink-0 items-center justify-center rounded-full border px-2.5 text-[9px] font-medium leading-none uppercase tracking-[0.11em] ${conservationStyle}`}><span className="-translate-y-px">{animal.conservationStatus}</span></span>
-            <button type="button" onClick={() => setIsCredentialsOpen(true)} aria-label="Ver credenciales de la ficha" className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[#285d3a] p-0 leading-none text-white transition-colors hover:bg-[#1e4b2f] sm:h-auto sm:w-auto sm:gap-1.5 sm:px-2 sm:py-1">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="block size-4"><path d="m7.5 12 2.8 2.8L16.8 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.5" /></svg>
-              <span className="hidden text-[9px] font-medium uppercase tracking-[0.1em] sm:inline">Ficha revisada</span>
-            </button>
+          <div className="min-w-0 self-start">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <h1 className="text-xl font-medium tracking-[-0.04em] text-[#193b2a] sm:text-2xl">{handle}</h1>
+              <button type="button" onClick={() => setIsCredentialsOpen(true)} aria-label="Ver credenciales de la ficha" className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[#285d3a] p-0 leading-none text-white transition-colors hover:bg-[#1e4b2f] sm:h-auto sm:w-auto sm:gap-1.5 sm:px-2 sm:py-1">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="block size-4"><path d="m7.5 12 2.8 2.8L16.8 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.5" /></svg>
+                <span className="hidden text-[9px] font-medium uppercase tracking-[0.1em] sm:inline">Ficha revisada</span>
+              </button>
+            </div>
+            <span title={animal.statusDetail} className={`mt-2 inline-flex h-7 max-w-full items-center gap-1.5 rounded-full border px-2.5 text-[9px] font-medium uppercase tracking-[0.1em] ${conservationStyle}`}>
+              <span className="size-1.5 shrink-0 rounded-full bg-current" />
+              <span className="truncate">{animal.conservationStatus}</span>
+            </span>
           </div>
           <div className="col-span-2 mt-4 flex gap-2 sm:col-span-1 sm:col-start-2">
             <button type="button" aria-label={`Subir una observación de ${animal.commonName}`} className="min-w-0 flex-1 rounded-md bg-[#285d3a] px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1e4b2f] sm:flex-none sm:py-1.5 sm:text-xs">+ Subir observación</button>
