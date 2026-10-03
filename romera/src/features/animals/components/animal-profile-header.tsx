@@ -26,10 +26,23 @@ export function AnimalProfileHeader({ animal }: { animal: Animal }) {
   const [isCredentialsOpen, setIsCredentialsOpen] = useState(false);
   const handle = `@${animal.scientificName.toLowerCase().replace(" ", ".")}`;
   const conservationStyle = conservationStyles[animal.conservationLevel];
+  const shareProfile = async () => {
+    const shareData = { title: animal.commonName, text: `Conoce al ${animal.commonName} en Romera`, url: window.location.href };
+
+    if (navigator.share) {
+      await navigator.share(shareData);
+      return;
+    }
+
+    await navigator.clipboard.writeText(window.location.href);
+  };
 
   return (
     <header>
       <div className="mx-auto max-w-5xl px-5 pb-0 pt-5 sm:px-8 sm:pt-14">
+        <button type="button" onClick={shareProfile} aria-label={`Compartir perfil de ${animal.commonName}`} title="Compartir" className="fixed right-5 top-5 z-40 grid size-9 place-items-center rounded-full border border-[#bdd1c0] bg-[#f6f7f3]/95 text-[#285d3a] shadow-sm backdrop-blur-sm transition-colors hover:bg-[#e6efe6] sm:right-8 sm:top-8">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="size-4"><circle cx="18" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.7" /><circle cx="6" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7" /><circle cx="18" cy="19" r="2.5" stroke="currentColor" strokeWidth="1.7" /><path d="m8.3 10.8 7.4-4.4m-7.4 6.8 7.4 4.4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg>
+        </button>
         <div className="grid grid-cols-[88px_1fr] gap-x-5 sm:grid-cols-[150px_1fr] sm:gap-x-11">
           <div className="pt-1 sm:row-span-3 sm:pt-0">
             <div
@@ -42,8 +55,8 @@ export function AnimalProfileHeader({ animal }: { animal: Animal }) {
             </div>
           </div>
           <div className="min-w-0 self-center sm:self-start">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <h1 className="text-xl font-medium tracking-[-0.04em] text-[#193b2a] sm:text-2xl">{handle}</h1>
+            <div className="flex flex-nowrap items-center gap-2 sm:gap-3">
+              <h1 className="min-w-0 flex-1 overflow-hidden whitespace-nowrap text-xl font-medium tracking-[-0.04em] text-[#193b2a] [mask-image:linear-gradient(to_right,#000_calc(100%_-_1.5rem),transparent)] [-webkit-mask-image:linear-gradient(to_right,#000_calc(100%_-_1.5rem),transparent)] sm:flex-none sm:overflow-visible sm:whitespace-normal sm:text-2xl sm:[mask-image:none] sm:[-webkit-mask-image:none]">{handle}</h1>
               <button type="button" onClick={() => setIsCredentialsOpen(true)} aria-label="Ver credenciales de la ficha" className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[#285d3a] p-0 leading-none text-white transition-colors hover:bg-[#1e4b2f]">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="block size-4"><path d="m7.5 12 2.8 2.8L16.8 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.5" /></svg>
               </button>
